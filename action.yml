@@ -1,0 +1,10 @@
+name: PParchdocker
+description: Launches Docker with Arch Linux.
+inputs:
+  script_and_packages:
+    description: Script to be launched after the setup and packages to be installed.
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  args: ${{ inputs.script_and_packages }}
