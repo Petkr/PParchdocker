@@ -7,7 +7,7 @@ shift 1
 
 pacman --noconfirm -Syyy
 
-for package in "$@"
+for package in $@ # no quotes is intended
 do
     pacman --noconfirm -S "$package"
 done
