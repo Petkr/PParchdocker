@@ -12,4 +12,10 @@ do
     pacman --noconfirm -S "$package"
 done
 
+ls /github
+
+echo "------"
+
+ls /github/workspace
+
 bash "/github/workspace/$script_name"
