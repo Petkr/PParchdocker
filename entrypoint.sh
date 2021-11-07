@@ -2,7 +2,7 @@
 
 cd $( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )
 
-repo_name="$1"
+repo_url="$1"
 script_name="$2"
 shift 2
 
