@@ -2,8 +2,9 @@
 
 cd $( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )
 
-script_name="$1"
-shift 1
+repo_name="$1"
+script_name="$2"
+shift 2
 
 pacman --noconfirm -Syyy
 
@@ -12,12 +13,6 @@ do
     pacman --noconfirm -S "$package"
 done
 
-find /github/
+git clone "$repo_name" repo/
 
-echo "------"
-
-find /repo/
-
-echo "------"
-
-bash "/github/workspace/$script_name"
+bash "repo/$script_name"
