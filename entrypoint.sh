@@ -8,13 +8,13 @@ shift 2
 
 pacman --noconfirm -Syyy
 
-pacman --noconfirm -S git
+pacman --noconfirm -S github-cli
 
 for package in $@ # no quotes is intended
 do
     pacman --noconfirm -S "$package"
 done
 
-git clone "$repo_name" repo/
+gh repo clone "$repo_name" repo/
 
 bash "repo/$script_name"
