@@ -15,6 +15,6 @@ do
     pacman --noconfirm -S "$package"
 done
 
-git clone "$repo_url" repo/
+git clone --recurse-submodules "$repo_url" repo/
 
 bash "repo/$script_name"
