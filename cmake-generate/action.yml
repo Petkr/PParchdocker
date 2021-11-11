@@ -8,10 +8,6 @@ inputs:
     description: Directory where CMake outputs generated rules.
     default: out-cmake
     required: true
-  generator:
-    description: Generator for CMake to use.
-    default: Ninja Multi-Config
-    required: true
 runs:
   using: composite
   steps:
@@ -19,4 +15,4 @@ runs:
       with:
         image: fackop/ppdocker
         options: -v ${{ github.workspace }}:/workspace -w /workspace
-        run: cmake -S ${{ inputs.source_dir }} -B ${{ inputs.output_dir }} -G "${{ inputs.generator }}"
+        run: cmake -S ${{ inputs.source_dir }} -B ${{ inputs.output_dir }} -G "Ninja Multi-Config"

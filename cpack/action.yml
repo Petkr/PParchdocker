@@ -8,6 +8,10 @@ inputs:
     description: Directory where CPack outputs packages.
     default: out-cpack
     required: true
+  config:
+    description: Configuration to package.
+    default: Release
+    required: true
 runs:
   using: composite
   steps:
@@ -15,4 +19,4 @@ runs:
       with:
         image: fackop/ppdocker
         options: -v ${{ github.workspace }}:/workspace -w /workspace
-        run: cpack --config ${{ inputs.config_dir }}/CPackConfig.cmake -B ${{ inputs.output_dir }}
+        run: cpack --config ${{ inputs.config_dir }}/CPackConfig.cmake -B ${{ inputs.output_dir }} -C ${{ inputs.config }} -D CPACK_INCLUDE_TOPLEVEL_DIRECTORY=0
