@@ -13,4 +13,5 @@ runs:
       uses: addnab/docker-run-action@v3
       with:
         image: fackop/ppdocker
+        options: -v ${{ github.workspace }}:/workspace -w /workspace
         run: cpack --config ${{ inputs.config_dir }}/CPackConfig.cmake -B ${{ inputs.output_dir }}
