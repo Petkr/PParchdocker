@@ -16,4 +16,4 @@ runs:
       uses: addnab/docker-run-action@v3
       with:
         image: fackop/ppdocker
-        run: cmake -S ${{ inputs.source_dir }} -B ${{ inputs.output_dir }} -G ${{ inputs.generator }}
+        run: cmake -S ${{ inputs.source_dir }} -B ${{ inputs.output_dir }} -G "${{ inputs.generator }}"
