@@ -7,10 +7,9 @@ inputs:
     description: Directory where CPack outputs packages.
     required: true
 runs:
-  using: composite
+  using: "composite"
   steps:
-    - name: CPack step
-      uses: addnab/docker-run-action@v3
+    - uses: addnab/docker-run-action@v3
       with:
         image: fackop/ppdocker
         run: cpack --config ${{ inputs.config_dir }}/CPackConfig.cmake -B ${{ inputs.output_dir }}
