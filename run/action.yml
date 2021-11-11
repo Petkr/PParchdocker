@@ -1,0 +1,13 @@
+name: Run
+inputs:
+  command:
+    description: The command to run.
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: addnab/docker-run-action@v3
+      with:
+        image: fackop/ppdocker
+        options: -v ${{ github.workspace }}:/workspace -w /workspace
+        run: ${{ inputs.command }}

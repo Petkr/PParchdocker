@@ -1,4 +1,4 @@
-name: CMake Build
+name: Build
 inputs:
   build_dir:
     description: Directory where CMake builds the target.
@@ -14,8 +14,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: addnab/docker-run-action@v3
+    - uses: Petkr/PPactions/run@v1
       with:
-        image: fackop/ppdocker
-        options: -v ${{ github.workspace }}:/workspace -w /workspace
-        run: cmake --build ${{ inputs.build_dir }} --config ${{ inputs.config }} --target ${{ inputs.target }} -j 10 --
+        command: cmake --build ${{ inputs.build_dir }} --config ${{ inputs.config }} --target ${{ inputs.target }} -j 10

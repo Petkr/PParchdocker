@@ -15,8 +15,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: addnab/docker-run-action@v3
+    - uses: Petkr/PPactions/run@v1
       with:
-        image: fackop/ppdocker
-        options: -v ${{ github.workspace }}:/workspace -w /workspace
-        run: cpack --config ${{ inputs.config_dir }}/CPackConfig.cmake -B ${{ inputs.output_dir }} -C ${{ inputs.config }} -D CPACK_INCLUDE_TOPLEVEL_DIRECTORY=0
+        command: cpack --config ${{ inputs.config_dir }}/CPackConfig.cmake -B ${{ inputs.output_dir }} -C ${{ inputs.config }} -D CPACK_INCLUDE_TOPLEVEL_DIRECTORY=0

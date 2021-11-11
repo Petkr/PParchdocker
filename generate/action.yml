@@ -1,4 +1,4 @@
-name: CMake Generate
+name: Generate
 inputs:
   source_dir:
     description: Directory which contains the top CMakeLists.txt file.
