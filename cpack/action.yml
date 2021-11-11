@@ -2,15 +2,16 @@ name: CPack
 inputs:
   config_dir:
     description: Directory in which the CPackConfig.cmake is located.
+    default: out-cmake
     required: true
   output_dir:
     description: Directory where CPack outputs packages.
+    default: out-cpack
     required: true
 runs:
   using: composite
   steps:
-    - name: CPack step
-      uses: addnab/docker-run-action@v3
+    - uses: addnab/docker-run-action@v3
       with:
         image: fackop/ppdocker
         options: -v ${{ github.workspace }}:/workspace -w /workspace

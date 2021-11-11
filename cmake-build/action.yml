@@ -1,0 +1,21 @@
+name: CMake Build
+inputs:
+  build_dir:
+    description: Directory where CMake builds the target.
+    default: out-cmake
+    required: true
+  config:
+    description: Configuration to build.
+    default: Release
+    required: true
+  target:
+    description: name of the target to build.
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: addnab/docker-run-action@v3
+      with:
+        image: fackop/ppdocker
+        options: -v ${{ github.workspace }}:/workspace -w /workspace
+        run: cmake --build ${{ inputs.build_dir }} --config ${{ inputs.config }} --target ${{ inputs.target }} -j 10 --

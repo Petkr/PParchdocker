@@ -2,18 +2,20 @@ name: CMake Generate
 inputs:
   source_dir:
     description: Directory which contains the top CMakeLists.txt file.
+    default: .
     required: true
   output_dir:
     description: Directory where CMake outputs generated rules.
+    default: out-cmake
     required: true
   generator:
     description: Generator for CMake to use.
+    default: Ninja Multi-Config
     required: true
 runs:
   using: composite
   steps:
-    - name: CMake Generate step
-      uses: addnab/docker-run-action@v3
+    - uses: addnab/docker-run-action@v3
       with:
         image: fackop/ppdocker
         options: -v ${{ github.workspace }}:/workspace -w /workspace
