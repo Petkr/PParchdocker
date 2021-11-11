@@ -1,2 +1,2 @@
 # PPactions
-GitHub actions used in PP project.
+GitHub actions used in the PP project.
