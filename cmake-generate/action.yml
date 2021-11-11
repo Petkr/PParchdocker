@@ -1,0 +1,19 @@
+name: CMake Generate
+inputs:
+  source_dir:
+    description: Directory which contains the top CMakeLists.txt file.
+    required: true
+  output_dir:
+    description: Directory where CMake outputs generated rules.
+    required: true
+  generator:
+    description: Generator for CMake to use.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: CMake Generate step
+      uses: addnab/docker-run-action@v3
+      with:
+        image: fackop/ppdocker
+        run: cmake -S ${{ inputs.source_dir }} -B ${{ inputs.output_dir }} -G ${{ inputs.generator }}

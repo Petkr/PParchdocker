@@ -1,0 +1,16 @@
+name: CPack
+inputs:
+  config_dir:
+    description: Directory in which the CPackConfig.cmake is located.
+    required: true
+  output_dir:
+    description: Directory where CPack outputs packages.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: CPack step
+      uses: addnab/docker-run-action@v3
+      with:
+        image: fackop/ppdocker
+        run: cpack --config ${{ inputs.config_dir }}/CPackConfig.cmake -B ${{ inputs.output_dir }}
