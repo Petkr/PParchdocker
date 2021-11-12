@@ -1,0 +1,21 @@
+name: Upload directory
+inputs:
+  name:
+    description: Artifact name.
+    required: true
+  path:
+    description: Directory path.
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: Petkr/PPactions/run@v1
+      with:
+        command: tar -cf ${{ inputs.name }}.tar ${{ inputs.path }}
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.name }}.tar
+    - uses: Petkr/PPactions/run@v1
+      with:
+        command: rm ${{ inputs.name }}.tar
