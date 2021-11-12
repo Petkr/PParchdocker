@@ -63,7 +63,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact-package
-      #- name: Release
-      #  uses: softprops/action-gh-release@v1
-      #  with:
-      #    files: "*"
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "*"
