@@ -14,6 +14,8 @@ jobs:
         uses: Petkr/PPactions/generate@v1
       - name: Build
         uses: Petkr/PPactions/build@v1
+        with:
+          target: all
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
