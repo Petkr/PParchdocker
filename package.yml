@@ -1,0 +1,23 @@
+name: Package
+
+on:
+  - workflow_call
+  - workflow_dispatch
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-build
+      - name: CPack
+        uses: Petkr/PPactions/cpack@v1
+      - name: Upload package
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-package
+          path: |
+                out-cpack/*
+                !out-cpack/*/*

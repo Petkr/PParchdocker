@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  - workflow_call
+  - workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2
+      - name: Generate
+        uses: Petkr/PPactions/generate@v1
+      - name: Build
+        uses: Petkr/PPactions/build@v1
+      - name: Upload package
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-build
+          path: out-cmake/*

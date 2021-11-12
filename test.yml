@@ -1,0 +1,16 @@
+name: Test
+
+on:
+  - workflow_call
+  - workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-build
+      - name: Test
+        uses: Petkr/PPactions/ctest@v1

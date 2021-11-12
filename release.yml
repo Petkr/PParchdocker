@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  - workflow_call
+  - workflow_dispatch
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2
+      - name: Generate
+        uses: Petkr/PPactions/generate@v1
+      - name: Build
+        uses: Petkr/PPactions/build@v1
+      - name: Upload package
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-build
+          path: out-cmake/*
+  Test:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-build
+      - name: Test
+        uses: Petkr/PPactions/ctest@v1
+  Package:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-build
+      - name: CPack
+        uses: Petkr/PPactions/cpack@v1
+      - name: Upload package
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-package
+          path: |
+                out-cpack/*
+                !out-cpack/*/*
+  release:
+    runs-on: ubuntu-latest
+    needs: |
+           Test
+           Package
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-package
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "*"

@@ -11,8 +11,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: addnab/docker-run-action@v3
+    - uses: Petkr/PPactions/run@v1
       with:
-        image: fackop/ppdocker
-        options: -v ${{ github.workspace }}:/workspace -w /workspace
-        run: cmake -S ${{ inputs.source_dir }} -B ${{ inputs.output_dir }} -G "Ninja Multi-Config"
+        command: cmake -S ${{ inputs.source_dir }} -B ${{ inputs.output_dir }} -G "Ninja Multi-Config"
