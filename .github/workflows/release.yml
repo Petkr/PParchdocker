@@ -16,19 +16,28 @@ jobs:
         uses: Petkr/PPactions/build@v1
         with:
           target: all
-      - name: Upload package
+      - name: Upload CMake files
         uses: Petkr/PPactions/upload-dir@v1
         with:
           name: artifact-build
           path: out-cmake/
+      - name: Upload vendor files
+        uses: Petkr/PPactions/upload-dir@v1
+        with:
+          name: artifact-vendor
+          path: vendor/
   Test:
     runs-on: ubuntu-latest
     needs: Build
     steps:
-      - name: Download package
+      - name: Download CMake files
         uses: Petkr/PPactions/download-dir@v1
         with:
           name: artifact-build
+      - name: Download vendor files
+        uses: Petkr/PPactions/download-dir@v1
+        with:
+          name: artifact-vendor
       - name: Test
         uses: Petkr/PPactions/ctest@v1
   Package:
@@ -37,7 +46,7 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
-      - name: Download package
+      - name: Download CMake files
         uses: Petkr/PPactions/download-dir@v1
         with:
           name: artifact-build
