@@ -31,6 +31,8 @@ jobs:
           name: artifact-build
       - name: Test
         uses: Petkr/PPactions/ctest@v1
+        with:
+          test_dir: .
   Package:
     runs-on: ubuntu-latest
     needs: Build
@@ -41,6 +43,8 @@ jobs:
           name: artifact-build
       - name: CPack
         uses: Petkr/PPactions/cpack@v1
+        with:
+          config_dir: .
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
@@ -48,7 +52,7 @@ jobs:
           path: |
                 out-cpack/*
                 !out-cpack/*/*
-  release:
+  Release:
     runs-on: ubuntu-latest
     needs:
       - Test
