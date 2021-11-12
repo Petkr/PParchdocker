@@ -67,3 +67,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: "*"
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: |
+                artifact-build
+                artifact-package
