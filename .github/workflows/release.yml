@@ -40,7 +40,7 @@ jobs:
           name: artifact-vendor
       - uses: Petkr/PPactions/run@v1
         with:
-          command: objdump -x out-cmake/tests/Release/add_const | grep RPATH
+          command: ls /workspace/tests/../vendor/lib; objdump -x out-cmake/tests/Release/add_const | grep RPATH
       - name: Test
         uses: Petkr/PPactions/ctest@v1
   Package:
