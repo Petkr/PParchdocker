@@ -11,7 +11,7 @@ runs:
   steps:
     - uses: Petkr/PPactions/run@v1
       with:
-        command: tar -cf ${{ inputs.name }}.tar ${{ inputs.path }}
+        command: mkdir ${{ inputs.path }} 2> /dev/null || true; tar -cf ${{ inputs.name }}.tar ${{ inputs.path }}
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ inputs.name }}
