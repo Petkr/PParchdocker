@@ -50,6 +50,10 @@ jobs:
         uses: Petkr/PPactions/download-dir@v1
         with:
           name: artifact-build
+      - name: Download vendor files
+        uses: Petkr/PPactions/download-dir@v1
+        with:
+          name: artifact-vendor
       - name: CPack
         uses: Petkr/PPactions/cpack@v1
       - name: Upload package
