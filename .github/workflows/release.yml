@@ -1,8 +1,11 @@
 name: Release
 
 on:
-  - workflow_call
-  - workflow_dispatch
+  workflow_call:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   Build:
