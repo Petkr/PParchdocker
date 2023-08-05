@@ -9,13 +9,13 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: Petkr/PPactions/run@v1
+    - uses: papundekel/PPactions/run@v1
       with:
         command: mkdir ${{ inputs.path }} 2> /dev/null || true; tar -cf ${{ inputs.name }}.tar ${{ inputs.path }}
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ inputs.name }}
         path: ${{ inputs.name }}.tar
-    - uses: Petkr/PPactions/run@v1
+    - uses: papundekel/PPactions/run@v1
       with:
         command: rm ${{ inputs.name }}.tar
