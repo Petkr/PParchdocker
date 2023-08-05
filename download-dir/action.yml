@@ -13,6 +13,6 @@ runs:
     - uses: actions/download-artifact@v2
       with:
         name: ${{ inputs.name }}
-    - uses: Petkr/PPactions/run@v1
+    - uses: papundekel/PPactions/run@v1
       with:
         command: tar -xf ${{ inputs.name }}.tar -C ${{ inputs.path }}; rm ${{ inputs.name }}.tar

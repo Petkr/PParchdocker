@@ -11,6 +11,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: Petkr/PPactions/run@v1
+    - uses: papundekel/PPactions/run@v1
       with:
         command: ctest --test-dir ${{ inputs.test_dir }} -C ${{ inputs.config }} -T test --output-on-failure
